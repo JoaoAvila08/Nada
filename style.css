@@ -10,16 +10,16 @@ header {
     color: white;
     padding: 20px;
 }
-header h2 {
-    color: yellow;
-    margin: 0 10px;
-    text-decoration: none;
-}
+
 
 header nav a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
+}
+
+header h2 {
+    color: yellow;
 }
 
 main {
