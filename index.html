@@ -21,29 +21,58 @@
         </nav>
     </header>
 
-    <!-- Conteúdo principal -->
     <main>
-        <h1>Bem Vindo ao ItachiGames</h1>
-        <p>Encontre o Jogo ideal para sua viagem, trabalho ou lazer.</p>
+  <h1>Bem-vindo a Itachi Games </h1>
+  <p>Encontre o carro ideal para sua viagem, trabalho ou lazer.</p>
 
-        <div class="carros">
-            <img src="https://assets-prd.ignimgs.com/2021/12/14/minecraft-1639513933156.jpg"
-                alt="Minecraft">
+  <div id="conteudo" class="conteudo-scroll">
+    <p>Carregando conteúdo...</p>
+  </div>
+</main>
 
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Roblox_Logo_2021.png"
-                alt="Roblox">
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtYlp6gypAaGzraawVy4sCJHbsyxT6QonOBlM-4o4HryEq4zL9_AqbrVb2B45DLCT7/exec"; // substitua pela URL do seu Apps Script
+async function carregarConteudo() {
+  const container = document.getElementById('conteudo');
+  container.innerHTML = "<p>Carregando conteúdo...</p>";
 
-            <img src="https://play-lh.googleusercontent.com/jHnf_3-yMox_Tub_oLKQ7OuOi8Iahf1f4rdu-etZ2hmzUOekY84znct-c8hksxhD15PYNk4dMH2ZdVY3uxm7Gw"
-                alt="Free fire">
-                
-        </div>
-    </main>
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const dados = await res.json();
+    container.innerHTML = '';
 
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2025 Locadora China</p>
-    </footer>
+    dados.forEach(item => {
+      const bloco = document.createElement('div');
+      bloco.className = 'bloco-item';
 
-</body>
+      const titulo = document.createElement('h2');
+      titulo.textContent = item.Título || '';
+      bloco.appendChild(titulo);
 
-</html>
+      const descricao = document.createElement('p');
+      descricao.textContent = item.Descrição || '';
+      bloco.appendChild(descricao);
+
+      if (item.Url && item.Url.startsWith('http')) {
+        if (item.Url.match(/\.(jpg|jpeg|png|gif|webp)$/i) || item.Url.includes('unsplash')) {
+          const img = document.createElement('img');
+          img.src = item.Url;
+          img.alt = item.Título || 'Imagem';
+          bloco.appendChild(img);
+        } else {
+          const link = document.createElement('a');
+          link.href = item.Url;
+          link.textContent = 'Ver mais';
+          bloco.appendChild(link);
+        }
+      }
+
+      container.appendChild(bloco);
+    });
+  } catch (err) {
+    container.innerHTML = "<p>Erro ao carregar dados: " + err.message + "</p>";
+  }
+}
+
+carregarConteudo();
+</script>
