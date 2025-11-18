@@ -220,9 +220,6 @@ footer {
   border-radius: 50%;
   transition: transform 0.25s;
 }
-
-3) Criar o tema escuro no style.css
-Adicione no final:
 /* ---------- TEMA ESCURO ---------- */
 .tema-escuro {
   background-color: #0f1720;
