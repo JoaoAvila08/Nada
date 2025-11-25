@@ -257,4 +257,19 @@ footer {
   transform: translateX(24px);
 }
 
+.caixa-conteudo h1 {
+    line-height: 1.6;       /* Espaçamento entre linhas */
+    white-space: pre-line;  /* Mantém quebras de linha no texto */
+    font-weight: normal;    /* Deixa o texto menos pesado que h1 padrão */
+}
+
+.caixa-conteudo b {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.caixa-conteudo h1 br {
+    margin-bottom: 10px;
+}
 
